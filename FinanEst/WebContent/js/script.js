@@ -4,10 +4,13 @@
 
 // Botões
 function voltar() {
+    "use strict";
     window.history.back();
 }
 
 function avisar() {
+    "use strict";
+    div = document;
     div = document.getElementById("Enviar");
     div.innerHTML = '\
 		<input type="submit" name="button" value="Enviar" id="botaoVermelho" onclick="avisar()">\
@@ -16,6 +19,7 @@ function avisar() {
 }
 
 function botaoEnviar(nomeValidado, eMailValidado, assuntoValidado, mensagemValidada) {
+    "use strict";
     div = document.getElementById("Enviar");
 
     if (nomeValidado && eMailValidado && assuntoValidado && mensagemValidada)
@@ -29,6 +33,7 @@ function botaoEnviar(nomeValidado, eMailValidado, assuntoValidado, mensagemValid
 
 // Inscrições
 function lembrar() {
+    "use strict";
     var tipoPreenchimento = document.getElementById("tipoPreenchimento").innerHTML;
     var div = document.getElementById("Inscrever");
 
@@ -38,6 +43,7 @@ function lembrar() {
 }
 
 function botaoInscrever(nomeValidado, CPFValidado, senhaValidada, confirmarSenhaValidada, CAPTCHAValidado, eMailValidado) {
+    "use strict";
     var tipoPreenchimento = document.getElementById("tipoPreenchimento").innerHTML;
     var div = document.getElementById("Inscrever");
 
@@ -58,6 +64,7 @@ function botaoInscrever(nomeValidado, CPFValidado, senhaValidada, confirmarSenha
 // Validações
 // Formato de e-mail
 function IsEmail(email) {
+    "use strict";
     var exclude = /[^@\-\.\w]|^[_@\.\-]|[\._\-]{2}|[@\.]{2}|(@)[^@]*\1/;
     var check = /@[\w\-]+\./;
     var checkend = /\.[a-zA-Z]{2,3}$/;
@@ -71,6 +78,7 @@ function IsEmail(email) {
 }
 
 function IsCPF(CPF) {
+    "use strict";
     return true;
 }
 
