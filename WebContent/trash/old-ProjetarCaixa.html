@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <title>Projeção de Caixa</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="flot/excanvas.min.js"></script>
+    <script src="flot/jquery.flot.js"></script>
+	<script type="text/javascript">
+
+    $(function() {
+    // Definimos os dados das vendas do Produto X
+    var produtoX = {
+        label: "Produto X",
+        data: [[10,1],[11,3],[12,5],[13,13],[14,8],[15,5],[16,4],[17,7],[18,9],[19,15],[20,13]]
+    };
+
+    // Definimos os dados das vendas do Produto Y
+    var produtoY = {
+        label: "Produto Y",
+        data: [[10,2],[11,5],[12,12],[13,23],[14,12],[15,3],[16,5],[17,9],[18,11],[19,16],[20,14]]
+    };
+
+    // Fazemos a plotagem do gráfico
+    $.plot("#exemplo1", [ produtoX, produtoY ], {
+        lines: { show: true },
+        points: { show: true },
+        xaxis: { tickDecimals: 0 }
+        });
+    });
+	</script>
+</head>
+<body>
+	<div id="conteudo">
+		<h1>Projeção de Caixa</h1>
+        <div id="exemplo1" style="width: 493px;height: 493px;"></div>
+        <a href="index.html">Voltar</a>
+        
+        <canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #000000;">
+</canvas>
+	</div><!-- /content -->
+</body>
+</html>
