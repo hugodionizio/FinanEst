@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import com.finanest.DAO.ContatoDAO;
-import com.finanest.DAO.ContatoHome;
 import com.finanest.annotations.Contato;
 
 public class TestaAltera {

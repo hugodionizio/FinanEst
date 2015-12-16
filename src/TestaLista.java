@@ -1,7 +1,6 @@
 import java.util.List;
 
 import com.finanest.DAO.ContatoDAO;
-import com.finanest.DAO.ContatoHome;
 import com.finanest.annotations.Contato;
 
 public class TestaLista {

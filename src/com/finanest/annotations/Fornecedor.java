@@ -2,10 +2,15 @@ package com.finanest.annotations;
 
 // Generated 09/12/2015 08:38:48 by Hibernate Tools 4.3.1
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,16 +19,27 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "FORNECEDOR", catalog = "FinanEst")
+@ManagedBean(name = "fornecedorBean", eager=true)
+@RequestScoped
 public class Fornecedor implements java.io.Serializable {
 
+	@ManagedProperty(value="#{idFornecedor}")
 	private Integer idFornecedor;
+	@ManagedProperty(value="#{rzsocial}")
 	private String rzsocial;
+	@ManagedProperty(value="#{nmfantasia}")
 	private String nmfantasia;
+	@ManagedProperty(value="#{cnpj}")
 	private String cnpj;
+	@ManagedProperty(value="#{endereco}")
 	private String endereco;
+	@ManagedProperty(value="#{foneprn}")
 	private String foneprn;
+	@ManagedProperty(value="#{fonesec}")
 	private String fonesec;
+	@ManagedProperty(value="#{email}")
 	private String email;
+	@ManagedProperty(value="#{site}")
 	private String site;
 
 	public Fornecedor() {

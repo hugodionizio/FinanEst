@@ -11,14 +11,15 @@
 <body>
 	<f:view>
 		<h:form>
-			<h:outputLabel value="Usuário (email): " id="usuario"/>
-			<h:inputText id="usu" value="#{usuBean.email}"/>
+			<h:outputLabel value="Usuário (email): " id="usuario" />
+			<h:inputText id="usu" value="#{usuBean.email}" />
 			<br>
-						
-			<h:outputLabel value="Senha:"/>
-			<h:inputText id="senha" value="#{usuBean.senha}"/>
-			<br>			
-			<h:commandButton value="Enviar" action="#{UsuarioDAO.verificarLogin(usuBean.email, usuBean.senha)}"/>
+
+			<h:outputLabel value="Senha:" />
+			<h:inputText id="senha" value="#{usuBean.senha}" />
+			<br>
+			<h:commandButton value="Enviar"
+				action="#{UsuarioDAO.verificarLogin(usuBean.email, usuBean.senha)}" />
 		</h:form>
 	</f:view>
 </body>

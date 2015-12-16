@@ -3,10 +3,16 @@ package com.finanest.annotations;
 // Generated 09/12/2015 08:38:48 by Hibernate Tools 4.3.1
 
 import java.util.Date;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,15 +23,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "ESTOQUE", catalog = "FinanEst")
+@ManagedBean(name = "estoqueBean", eager=true)
+@RequestScoped
 public class Estoque implements java.io.Serializable {
 
+	@ManagedProperty(value="#{idEstoque}")
 	private Integer idEstoque;
+	@ManagedProperty(value="#{tipo}")
 	private String tipo;
+	@ManagedProperty(value="#{insumo}")
 	private String insumo;
+	@ManagedProperty(value="#{preco}")
 	private Float preco;
+	@ManagedProperty(value="#{qtde}")
 	private Integer qtde;
+	@ManagedProperty(value="#{data}")
 	private Date data;
+	@ManagedProperty(value="#{data}")
 	private Integer idFornecedor;
+	@ManagedProperty(value="#{idFuncionario}")
 	private Integer idFuncionario;
 
 	public Estoque() {

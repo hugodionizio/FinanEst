@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 import com.finanest.DAO.ContatoDAO;
-import com.finanest.DAO.ContatoHome;
 import com.finanest.annotations.Contato;
 
 public class TestaRemove {

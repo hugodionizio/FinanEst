@@ -3,24 +3,24 @@
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.password">ufersa</property>
-        <property name="connection.url">jdbc:mysql://localhost/FinanEst</property>
-        <property name="connection.username">root</property>
-        <property name="connection.pool_size">1</property>
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="search.autoregister_listeners">false</property>
-        <property name="validator.apply_to_ddl">false</property>
-        <property name="current_session_context_class">thread</property>
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-        <property name="show_sql">true</property>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.password">ufersa</property>
+		<property name="connection.url">jdbc:mysql://localhost/FinanEst</property>
+		<property name="connection.username">root</property>
+		<property name="connection.pool_size">1</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="search.autoregister_listeners">false</property>
+		<property name="validator.apply_to_ddl">false</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="show_sql">true</property>
 		<mapping class="com.finanest.annotations.Cliente" />
-        <mapping class="com.finanest.annotations.Funcionario" />
-        <mapping class="com.finanest.annotations.Estoque" />
-        <mapping class="com.finanest.annotations.Contato" />
-        <mapping class="com.finanest.annotations.Usuario" />
-        <mapping class="com.finanest.annotations.Fornecedor" />
-        <mapping class="com.finanest.annotations.Caixa" />
-    </session-factory>
+		<mapping class="com.finanest.annotations.Funcionario" />
+		<mapping class="com.finanest.annotations.Estoque" />
+		<mapping class="com.finanest.annotations.Contato" />
+		<mapping class="com.finanest.annotations.Usuario" />
+		<mapping class="com.finanest.annotations.Fornecedor" />
+		<mapping class="com.finanest.annotations.Caixa" />
+	</session-factory>
 </hibernate-configuration>

@@ -56,6 +56,16 @@ function valCPF(e, campo) {
 	}
 }
 
+function valSenha() {
+	var senha1 = document.getElementById('senha').value;
+	var senha2 = document.getElementById('confsenha').value;
+	//var msg = document.getElementById("")  
+    //msg.innerHTML = mensagem
+	if(senha1 != senha2){
+		exibirmensagem("Erro na confirmação da senha. Valor inválido.");
+	}
+}
+
 function recuperarSenha() {
 	var X = $(this).attr('id');
 

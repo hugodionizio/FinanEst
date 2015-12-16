@@ -6,44 +6,41 @@
 </head>
 <body>
 
-<form name="login" method="post" action="Menu.html">
+	<form name="login" method="post" action="Menu.html">
 
-    <div>
-      <label for="usuario">Usuário (CPF):</label><br>
-      <input type="text" name="usuario" id="usuario" tabindex="1"
-             autofocus="" placeholder="Informe seu CPF" onkeypress="return valCPF(event, this);
+		<div>
+			<label for="usuario">Usuário (CPF):</label><br> <input
+				type="text" name="usuario" id="usuario" tabindex="1" autofocus=""
+				placeholder="Informe seu CPF"
+				onkeypress="return valCPF(event, this);
                  return false;"
-             onkeyUp="if (this.value.length == 14)
-                   this.form.senha.focus()"
-        />
-    </div>
-    <div id="validarCPF"></div>
-    <br>
+				onkeyUp="if (this.value.length == 14)
+                   this.form.senha.focus()" />
+		</div>
+		<div id="validarCPF"></div>
+		<br>
 
-    <div>
-      <label for="senha">Senha:</label><br>
-      <input type="password" name="senha"
-             id="senha" tabindex="1" autofocus="" placeholder="Informe sua senha" maxlength="50" />
-    </div>
-    <div id="validarSenha"></div>
-    <br>
-    
-    <input type="submit" name="sub" value="Entrar" />
-    
-    <input class='recuperarSenha' type="button" onclick="recuperarSenha()" value='Recuperar Senha' />
-    <div class="submeterEMail">
-        <label for="eMail">e-mail:</label><br>
-        <input type="text" name="eMail" id="eMail" tabindex="1" autofocus="" placeholder="Informe seu e-mail de cadastro" size=46 />
-        <div id="validarEMail"></div>
-        <input type="submit" name="sub" value="Recuperar Senha" />
-        <br>
-        <br>
-    </div>
-    
-    <input type="hidden" name="acao" value="env-cont">
-    
-    <input type="submit" name="sub" value="Cadastrar-se" />
-  </form>
+		<div>
+			<label for="senha">Senha:</label><br> <input type="password"
+				name="senha" id="senha" tabindex="1" autofocus=""
+				placeholder="Informe sua senha" maxlength="50" />
+		</div>
+		<div id="validarSenha"></div>
+		<br> <input type="submit" name="sub" value="Entrar" /> <input
+			class='recuperarSenha' type="button" onclick="recuperarSenha()"
+			value='Recuperar Senha' />
+		<div class="submeterEMail">
+			<label for="eMail">e-mail:</label><br> <input type="text"
+				name="eMail" id="eMail" tabindex="1" autofocus=""
+				placeholder="Informe seu e-mail de cadastro" size=46 />
+			<div id="validarEMail"></div>
+			<input type="submit" name="sub" value="Recuperar Senha" /> <br>
+			<br>
+		</div>
+
+		<input type="hidden" name="acao" value="env-cont"> <input
+			type="submit" name="sub" value="Cadastrar-se" />
+	</form>
 
 </body>
 </html>

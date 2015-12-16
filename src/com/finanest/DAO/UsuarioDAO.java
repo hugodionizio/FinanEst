@@ -112,7 +112,7 @@ public class UsuarioDAO {
 			//List result = query.list();
 			if(usuario != null) {
 				System.out.println("OK");
-				return "Main";
+				return "Administrador/AreaAdmin";
 			}
 			else {
 				System.out.println("Erro...");
@@ -127,7 +127,7 @@ public class UsuarioDAO {
 	public String trash_verificarLogin(String email, String senha) {
 		if(email.equalsIgnoreCase("root") && senha.equalsIgnoreCase("ufersa")) {
 			System.out.println("OK");
-			return "Main";
+			return "Administrador/AreaAdmin";
 		}
 		else {
 			System.out.println("Erro...");
@@ -137,5 +137,9 @@ public class UsuarioDAO {
 
 	public void intermediar(String email, String senha) {
 		System.out.println("Seu e-mail é: " + email + " e a senha: " + senha);
+	}
+	
+	public String contactar() {
+		return "Contato";
 	}
 }

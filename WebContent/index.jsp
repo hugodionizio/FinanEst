@@ -23,29 +23,19 @@
 <title>FinanEst - Sistema Financeiro e de Estoque</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">FinanEst</a>
-		</div>
-		<ul id="menu" class="nav navbar-nav">
-			<li><a href="">Home</a></li>
-			<li><a href="Contato.jsp">Contato</a></li>
-		</ul>
-		<!-- /menu -->
-	</div>
-	</nav>
+	<f:view>
+		<jsp:directive.include file="MenuVisitante.jsp" />
 
-	<div id="home" class="container">
-		<div id="conteudo">
+		<div id="home" class="container">
+			<div id="conteudo">
 
-			<div align="center">
-				<div class="jumbotron">
+				<div align="center">
+					<div class="jumbotron">
 
-					<h1>FinanEst</h1>
-					<p>Sistema Financeiro e de Estoque</p>
-				</div>
-				<f:view>
+						<h1>FinanEst</h1>
+						<p>Sistema Financeiro e de Estoque</p>
+					</div>
+
 					<h:form>
 						<h:panelGrid id="panel" columns="3" border="0" cellpadding="10"
 							cellspacing="1">
@@ -70,24 +60,25 @@
 							<h:message for="senha" style="color:red" />
 						</h:panelGrid>
 
-						<input type="submit" name="sub" value="Cadastrar-se" />
-
-						<h:commandButton id="submit" value="Enviar"
-							action="#{UsuarioDAO.verificarLogin(usuBean.email, usuBean.senha)}" />
+						<h:commandButton id="loginCliente" value="Login"
+							action="#{ClienteDAO.verificarLogin(usuBean.email, usuBean.senha)}" />
 
 						<input class='recuperarSenha' type="button"
 							onclick="recuperarSenha()" value='Recuperar Senha' />
+
+						<h:commandButton id="loginAdministrador" value="Administrador"
+							action="#{UsuarioDAO.verificarLogin(usuBean.email, usuBean.senha)}" />
 						<br>
 						<br>
 						<div class="submeterEMail">
 							<label for="eMail">e-mail:</label><br> <input type="text"
-								name="eMail" id="eMail" tabindex="1" autofocus=""
+								name="eMail" id="eMail" tabindex="3" autofocus=""
 								placeholder="Informe seu e-mail de cadastro" />
 							<div id="validarEMail"></div>
 							<input type="submit" name="sub" value="Enviar por e-mail" /> <br>
 							<br> <label for="codSMS">Código enviado pela
 								operadora:</label><br> <input type="text" name="codSMS" id="codSMS"
-								tabindex="1" autofocus=""
+								tabindex="4" autofocus=""
 								placeholder="Informe o código enviado pela operadora" />
 							<div id="validarCódigo"></div>
 							<input type="submit" name="sub" value="Confirmar código" /> <input
@@ -95,12 +86,12 @@
 						</div>
 
 						<input type="hidden" name="acao" value="env-cont">
-						<div id="msg"></div>
+						<div id="msg" class="dcontexto"></div>
 					</h:form>
-				</f:view>
+				</div>
 			</div>
+			<!-- /content -->
 		</div>
-		<!-- /content -->
-	</div>
+	</f:view>
 </body>
 </html>

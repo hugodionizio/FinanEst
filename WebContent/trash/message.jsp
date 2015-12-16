@@ -16,7 +16,7 @@
 				cellspacing="1">
 				<h:outputLabel value="Usuário" for="usuario"
 					onmouseover="exibirmensagem('Informe o e-mail do usuário')"
-					onmouseout="exibirmensagem('')">			
+					onmouseout="exibirmensagem('')">
 				</h:outputLabel>
 				<h:inputText tabindex="1" id="usuario" value="#{usuBean.email}"
 					size="20" label="Login do usuário" required="true">

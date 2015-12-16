@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
- <application/>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	<managed-bean>
+		<managed-bean-name>date</managed-bean-name>
+		<managed-bean-class>java.util.Date</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>calendarDate</property-name>
+			<property-class>sun.util.calendar.BaseCalendar.Date</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>cdate</property-name>
+			<property-class>sun.util.calendar.BaseCalendar.Date</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>date</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>day</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>defaultCenturyStart</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>fastTime</property-name>
+			<property-class>long</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>gcal</property-name>
+			<property-class>sun.util.calendar.BaseCalendar</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>hours</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>jcal</property-name>
+			<property-class>sun.util.calendar.BaseCalendar</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>julianCalendar</property-name>
+			<property-class>sun.util.calendar.BaseCalendar</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>minutes</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>month</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>seconds</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>serialVersionUID</property-name>
+			<property-class>long</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>time</property-name>
+			<property-class>long</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>timeImpl</property-name>
+			<property-class>long</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>timezoneOffset</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>ttb</property-name>
+			<property-class>int[]</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>wtb</property-name>
+			<property-class>java.lang.String[]</property-class>
+			<value />
+		</managed-property>
+		<managed-property>
+			<property-name>year</property-name>
+			<property-class>int</property-class>
+			<value />
+		</managed-property>
+	</managed-bean>
+	<application />
 </faces-config>

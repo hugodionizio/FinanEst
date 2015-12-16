@@ -3,10 +3,16 @@ package com.finanest.annotations;
 // Generated 09/12/2015 08:38:48 by Hibernate Tools 4.3.1
 
 import java.util.Date;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,14 +23,23 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "CONTATO", catalog = "FinanEst")
+@ManagedBean(name = "contatoBean", eager=true)
+@RequestScoped
 public class Contato implements java.io.Serializable {
 
+	@ManagedProperty(value="#{idContato}")
 	private Integer idContato;
+	@ManagedProperty(value="#{nome}")
 	private String nome;
+	@ManagedProperty(value="#{email}")
 	private String email;
+	@ManagedProperty(value="#{instituicao}")
 	private String instituicao;
+	@ManagedProperty(value="#{assunto}")
 	private String assunto;
+	@ManagedProperty(value="#{mensagem}")
 	private String mensagem;
+	@ManagedProperty(value="#{data}")
 	private Date data;
 
 	public Contato() {

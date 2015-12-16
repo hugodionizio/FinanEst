@@ -2,10 +2,15 @@ package com.finanest.annotations;
 
 // Generated 09/12/2015 08:38:48 by Hibernate Tools 4.3.1
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,15 +19,25 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CLIENTE", catalog = "FinanEst")
+@ManagedBean(name = "clienteBean", eager=true)
+@RequestScoped
 public class Cliente implements java.io.Serializable {
 
+	@ManagedProperty(value="#{idCliente}")
 	private Integer idCliente;
+	@ManagedProperty(value="#{nome}")
 	private String nome;
+	@ManagedProperty(value="#{cpf}")
 	private String cpf;
+	@ManagedProperty(value="#{senha}")
 	private String senha;
+	@ManagedProperty(value="#{endereco}")
 	private String endereco;
+	@ManagedProperty(value="#{foneprn}")
 	private String foneprn;
+	@ManagedProperty(value="#{fonesec}")
 	private String fonesec;
+	@ManagedProperty(value="#{email}")
 	private String email;
 
 	public Cliente() {
