@@ -54,20 +54,20 @@ public class ClienteDAO {
 		}
 	}
 	
-	private static final ArrayList<Cliente> contatoLista = mapear();
+	private static final ArrayList<Cliente> clienteLista = mapear();
 	public static ArrayList<Cliente> mapear() {
 		ArrayList<Cliente> tabela = new ArrayList<Cliente>();
 		
 		List<Cliente> lista = listar();
-		for (Cliente contato : lista) {
-			tabela.add(contato);
+		for (Cliente cliente : lista) {
+			tabela.add(cliente);
 		}
 		
 		return tabela;
 	}
 	
 	public ArrayList<Cliente> getClienteLista () {
-		return contatoLista;
+		return clienteLista;
 	}
 	
 	public void altera(Cliente detachedInstance) {

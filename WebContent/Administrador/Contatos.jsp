@@ -64,6 +64,13 @@
 
 							<h:column>
 								<f:facet name="header">
+									<h:outputText value="Mensagem" />
+								</f:facet>
+								<h:outputText value="#{con.mensagem}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
 									<h:outputText value="Data" />
 								</f:facet>
 								<h:outputText value="#{con.data}" />
@@ -73,8 +80,11 @@
 								<f:facet name="header">
 									<h:outputText value="Ações" />
 								</f:facet>
-								<h:commandLink value="Remover"
-									action="#{ContatoDAO.remover(con)}" />
+								<h:commandLink value=""
+									action="#{ContatoDAO.remover(con)}">
+									<h:graphicImage value="../img/remover.png"
+										style="width: 25px; height: 25px; " />
+								</h:commandLink>
 							</h:column>
 						</h:dataTable>
 					</h:form>

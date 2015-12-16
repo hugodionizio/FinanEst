@@ -1,10 +1,12 @@
 package com.finanest.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
+
 
 
 
@@ -14,11 +16,12 @@ import org.hibernate.criterion.Restrictions;
 
 import com.finanest.Util.HibernateUtil;
 import com.finanest.annotations.Caixa;
+import com.finanest.annotations.Caixa;
 
 @ManagedBean(name="CaixaDAO", eager = true)
 @RequestScoped
 public class CaixaDAO {
-	private Session session;
+	private static Session session;
 	public CaixaDAO(){}
 	
 	public void salvar(Caixa transientInstance) {
@@ -36,7 +39,23 @@ public class CaixaDAO {
 		}
 	}
 	
-	public List listar() {
+	private static final ArrayList<Caixa> itemLista = mapear();
+	public static ArrayList<Caixa> mapear() {
+		ArrayList<Caixa> tabela = new ArrayList<Caixa>();
+		
+		List<Caixa> lista = listar();
+		for (Caixa item : lista) {
+			tabela.add(item);
+		}
+		
+		return tabela;
+	}
+	
+	public ArrayList<Caixa> getCaixaLista () {
+		return itemLista;
+	}
+	
+	public static List listar() {
 		//log.debug("listing Caixa instances");
 		try {
 			HibernateUtil.setUp();

@@ -1,10 +1,12 @@
 package com.finanest.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
+
 
 
 
@@ -14,11 +16,12 @@ import org.hibernate.criterion.Restrictions;
 
 import com.finanest.Util.HibernateUtil;
 import com.finanest.annotations.Fornecedor;
+import com.finanest.annotations.Fornecedor;
 
 @ManagedBean(name="FornecedorDAO", eager = true)
 @RequestScoped
 public class FornecedorDAO {
-	private Session session;
+	private static Session session;
 	public FornecedorDAO(){}
 	
 	public void salvar(Fornecedor transientInstance) {
@@ -36,7 +39,23 @@ public class FornecedorDAO {
 		}
 	}
 	
-	public List listar() {
+	private static final ArrayList<Fornecedor> fornecedorLista = mapear();
+	public static ArrayList<Fornecedor> mapear() {
+		ArrayList<Fornecedor> tabela = new ArrayList<Fornecedor>();
+		
+		List<Fornecedor> lista = listar();
+		for (Fornecedor fornecedor : lista) {
+			tabela.add(fornecedor);
+		}
+		
+		return tabela;
+	}
+	
+	public ArrayList<Fornecedor> getFornecedorLista () {
+		return fornecedorLista;
+	}
+	
+	public static List listar() {
 		//log.debug("listing Fornecedor instances");
 		try {
 			HibernateUtil.setUp();

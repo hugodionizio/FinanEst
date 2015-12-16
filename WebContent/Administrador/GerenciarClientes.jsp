@@ -24,7 +24,7 @@
 							<f:facet name="header">
 								<h:outputText value="Nº Registro" />
 							</f:facet>
-							<h:outputText value="#{cli.idCliente}" style="size: 2"/>
+							<h:outputText value="#{cli.idCliente}" style="size: 2" />
 						</h:column>
 
 						<h:column>
@@ -107,13 +107,19 @@
 							<f:facet name="header">
 								<h:outputText value="Ações" />
 							</f:facet>
-							<h:commandLink value="Alterar" action="#{ClienteDAO.altera(cli)}" />
-							<h:commandLink value="Remover"
-								action="#{ClienteDAO.remover(cli)}" />
+							<h:commandLink value="" action="#{ClienteDAO.altera(cli)}">
+								<h:graphicImage value="../img/editar.png"
+									style="width: 25px; height: 25px; " />
+							</h:commandLink>
+							<h:commandLink value=""
+								action="#{ClienteDAO.remover(cli)}">
+								<h:graphicImage value="../img/remover.png"
+									style="width: 25px; height: 25px; " />
+							</h:commandLink>
 						</h:column>
 					</h:dataTable>
 				</h:form>
-			<!-- /Clientes -->
+				<!-- /Clientes -->
 			</div>
 		</div>
 	</f:view>

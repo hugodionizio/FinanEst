@@ -1,10 +1,12 @@
 package com.finanest.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
+
 
 
 
@@ -14,11 +16,12 @@ import org.hibernate.criterion.Restrictions;
 
 import com.finanest.Util.HibernateUtil;
 import com.finanest.annotations.Funcionario;
+import com.finanest.annotations.Funcionario;
 
 @ManagedBean(name="FuncionarioDAO", eager = true)
 @RequestScoped
 public class FuncionarioDAO {
-	private Session session;
+	private static Session session;
 	public FuncionarioDAO(){}
 	
 	public void salvar(Funcionario transientInstance) {
@@ -36,7 +39,23 @@ public class FuncionarioDAO {
 		}
 	}
 	
-	public List listar() {
+	private static final ArrayList<Funcionario> funcionarioLista = mapear();
+	public static ArrayList<Funcionario> mapear() {
+		ArrayList<Funcionario> tabela = new ArrayList<Funcionario>();
+		
+		List<Funcionario> lista = listar();
+		for (Funcionario funcionario : lista) {
+			tabela.add(funcionario);
+		}
+		
+		return tabela;
+	}
+	
+	public ArrayList<Funcionario> getFuncionarioLista () {
+		return funcionarioLista;
+	}
+	
+	public static List listar() {
 		//log.debug("listing Funcionario instances");
 		try {
 			HibernateUtil.setUp();

@@ -109,13 +109,10 @@
 						<f:validateLength minimum="1" maximum="30" />
 					</h:inputText>
 					<h:message for="eMail" style="color:red" />
-
-					<h:message for="endereco" style="color:red" />
 				</h:panelGrid>
-				<h:commandButton id="submit" value="Enviar"
+				<h:commandButton id="salvar" value="Salvar"
 					action="#{ClienteDAO.salvar(clienteBean)}" />
 				<div id="msg" class="dcontexto"></div>
-
 			</h:form>
 		</div>
 	</f:view>

@@ -28,7 +28,10 @@
 			<div class="navbar-header">
 				<a class="navbar-brand" href="AreaCliente.jsp">FinanEst</a>
 				<ul id="menu" class="nav navbar-nav">
-					<li><h:commandLink value="Sair" action="/index.jsp" /></a></li>
+					<li><h:commandLink value="" action="/index.jsp" >
+					<h:graphicImage value="../img/sair.png"
+									style="width: 25px; height: 25px; " />
+					</h:commandLink></a></li>
 					<li><h:commandLink value="Alterar Cadastro"
 							action="/CadastroCliente.jsp" /></a></li>
 					<li><h:commandLink value="Comprar" action="VendaInsumo.jsp" /></a></li>
