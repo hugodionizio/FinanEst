@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cadastro de clientes</title>
+<title>Lista de clientes</title>
 </head>
 <body>
 	<f:view>
@@ -14,91 +14,107 @@
 
 		<div id="home" class="container">
 			<div id="conteudo">
-				<h1>Cadastro de Clientes</h1>
-				<form name="cadastroCliente" method="post" action="Menu.html">
-					<div>
-						<label for="nomeCompleto">Nome completo:</label><br> <input
-							type="text" name="nomeCompleto" id="nomeCompleto" tabindex="1"
-							autofocus="" placeholder="Informe seu nome completo" size=46 />
-					</div>
-					<div id="validarNome"></div>
-					<br>
+				<h1>Lista de Clientes</h1>
 
-					<div>
-						<label for="CPF">CPF: </label><br> <input type="text"
-							name="CPF" id="CPF" tabindex="1" autofocus=""
-							placeholder="Informe seu CPF" size=14
-							onkeypress="return valCPF(event, this);
-	                return false;"
-							onkeyUp="if (this.value.length == 14)
-	                  this.form.senha.focus();" />
-					</div>
-					<div id="validarCPF"></div>
-					<br>
+				<h:form>
+					<h:dataTable value="#{ClienteDAO.clienteLista}" var="cli"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nº Registro" />
+							</f:facet>
+							<h:outputText value="#{cli.idCliente}" style="size: 2"/>
+						</h:column>
 
-					<div>
-						<label for="senha">Senha: </label><br> <input type="password"
-							name="senha" id="senha" tabindex="1" autofocus=""
-							placeholder="Informe sua senha" maxlength="50" />
-					</div>
-					<div id="validarSenha"></div>
-					<br>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:inputText tabindex="1" id="nomeCompleto" value="#{cli.nome}"
+								onblur="if (this.value == '#{clienteBean.nome}'){this.value = '#{cli.nome}'; }"
+								onfocus="if (this.value == '#{cli.nome}') {this.value = '#{clienteBean.nome}'; }">
+							</h:inputText>
+						</h:column>
 
-					<div>
-						<label for="confirmarSenha">Confirmar senha: </label><br> <input
-							type="password" name="confirmarSenha" id="confirmarSenha"
-							tabindex="1" autofocus="" placeholder="Repita sua senha"
-							maxlength="50" />
-					</div>
-					<div id="validarConfirmarSenha"></div>
-					<br>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="CPF" />
+							</f:facet>
+							<h:inputText tabindex="1" id="cpf" value="#{cli.cpf}"
+								onblur="if (this.value == '#{clienteBean.cpf}'){this.value = '#{cli.cpf}'; }"
+								onfocus="if (this.value == '#{cli.cpf}') {this.value = '#{clienteBean.cpf}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
 
-					<div>
-						<label for="endereco">Endereço: </label><br> <input
-							type="text" name="endereco" id="endereco" tabindex="3"
-							autofocus="" placeholder="Informe o endereço da empresa" size=80 />
-					</div>
-					<div id="validarEndereco"></div>
-					<br>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Senha" />
+							</f:facet>
+							<h:inputSecret tabindex="1" id="senha" value="#{cli.senha}"
+								onblur="if (this.value == '#{clienteBean.senha}'){this.value = '#{cli.senha}'; }"
+								onfocus="if (this.value == '#{cli.senha}') {this.value = '#{clienteBean.senha}'; }"
+								size="6">
+							</h:inputSecret>
+						</h:column>
 
-					<div>
-						<label for="telefonePrincipal">Telefone Principal: </label><br>
-						<input type="text" name="telefonePrincipal" id="telefonePrincipal"
-							tabindex="4" autofocus=""
-							placeholder="Informe o telefone principal" size=30 />
-					</div>
-					<div id="validarTelefonePrincipal"></div>
-					<br>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Endereço" />
+							</f:facet>
+							<h:inputText tabindex="1" id="endereco" value="#{cli.endereco}"
+								onblur="if (this.value == '#{clienteBean.endereco}'){this.value = '#{cli.endereco}'; }"
+								onfocus="if (this.value == '#{cli.endereco}') {this.value = '#{clienteBean.endereco}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
 
-					<div>
-						<label for="telefoneAlternativo">Telefone Alternativo: </label><br>
-						<input type="text" name="telefoneAlternativo"
-							id="telefoneAlternativo" tabindex="5" autofocus=""
-							placeholder="Informe um telefone alternativo" size=30 />
-					</div>
-					<div id="validarTelefoneAlternativo"></div>
-					<br>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Telefone principal" />
+							</f:facet>
+							<h:inputText tabindex="1" id="foneprn" value="#{cli.foneprn}"
+								onblur="if (this.value == '#{clienteBean.foneprn}'){this.value = '#{cli.foneprn}'; }"
+								onfocus="if (this.value == '#{cli.foneprn}') {this.value = '#{clienteBean.foneprn}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
 
-					<div>
-						<label for="eMail">e-mail:</label><br> <input type="text"
-							name="eMail" id="eMail" tabindex="1" autofocus=""
-							placeholder="Informe seu e-mail" size=46 />
-					</div>
-					<div id="validarEMail"></div>
-					<br>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Telefone alternativo" />
+							</f:facet>
+							<h:inputText tabindex="1" id="fonesec" value="#{cli.fonesec}"
+								onblur="if (this.value == '#{clienteBean.fonesec}'){this.value = '#{cli.fonesec}'; }"
+								onfocus="if (this.value == '#{cli.fonesec}') {this.value = '#{clienteBean.fonesec}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
 
-					<div>
-						<input type="hidden" name="acao" value="env-cont">
-						<div id="Cadastrar">
-							<input type="button" name="conf" value="Cadastrar"
-								id="botaoVermelho" onclick="lembrar();"> <input
-								type="button" value="Voltar" onclick="voltar();">
-						</div>
-					</div>
-					<br>
-				</form>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="E-mail" />
+							</f:facet>
+							<h:inputText tabindex="1" id="email" value="#{cli.email}"
+								onblur="if (this.value == '#{clienteBean.email}'){this.value = '#{cli.email}'; }"
+								onfocus="if (this.value == '#{cli.email}') {this.value = '#{clienteBean.email}'; }"
+								size="16">
+							</h:inputText>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ações" />
+							</f:facet>
+							<h:commandLink value="Alterar" action="#{ClienteDAO.altera(cli)}" />
+							<h:commandLink value="Remover"
+								action="#{ClienteDAO.remover(cli)}" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			<!-- /Clientes -->
 			</div>
-			<!-- /content -->
 		</div>
 	</f:view>
 </body>

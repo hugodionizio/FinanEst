@@ -12,14 +12,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Contatos</title>
+<title>Mensagens de contato</title>
 </head>
 <body>
 	<f:view>
 		<jsp:directive.include file="MenuAdmin.jsp" />
 
 		<div id="home" class="container">
-			<h2>Contatos</h2>
+			<h2>Mensagens de contato</h2>
 
 			<div class="jumbotron">
 				<div id="conteudo">
@@ -28,53 +28,53 @@
 							styleClass="order-table" headerClass="order-table-header"
 							rowClasses="order-table-odd-row,order-table-even-row">
 							<h:column>
-								<f:facet name="header">Nº Registro</f:facet>
-								<h:column>
-									<h:outputText value="#{con.idContato}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="Nº Registro" />
+								</f:facet>
+								<h:outputText value="#{con.idContato}" />
 							</h:column>
 
 							<h:column>
-								<f:facet name="header">Nome</f:facet>
-								<h:column>
-									<h:outputText value="#{con.nome}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="Nome" />
+								</f:facet>
+								<h:outputText value="#{con.nome}" />
 							</h:column>
 
 							<h:column>
-								<f:facet name="header">E-mail</f:facet>
-								<h:column>
-									<h:outputText value="#{con.email}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="E-mail" />
+								</f:facet>
+								<h:outputText value="#{con.email}" />
 							</h:column>
 
 							<h:column>
-								<f:facet name="header">Instituição</f:facet>
-								<h:column>
-									<h:outputText value="#{con.instituicao}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="Instituição" />
+								</f:facet>
+								<h:outputText value="#{con.instituicao}" />
 							</h:column>
 
 							<h:column>
-								<f:facet name="header">Assunto</f:facet>
-								<h:column>
-									<h:outputText value="#{con.assunto}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="Assunto" />
+								</f:facet>
+								<h:outputText value="#{con.assunto}" />
 							</h:column>
 
 							<h:column>
-								<f:facet name="header">Data</f:facet>
-								<h:column>
-									<h:outputText value="#{con.data}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="Data" />
+								</f:facet>
+								<h:outputText value="#{con.data}" />
 							</h:column>
 
 							<h:column>
-								<f:facet name="header">Ação</f:facet>
-								<h:column>
-									<h:commandLink value="Remover"
-										action="#{ContatoDAO.remover(con)}" />
-								</h:column>
+								<f:facet name="header">
+									<h:outputText value="Ações" />
+								</f:facet>
+								<h:commandLink value="Remover"
+									action="#{ContatoDAO.remover(con)}" />
 							</h:column>
 						</h:dataTable>
 					</h:form>

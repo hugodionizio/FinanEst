@@ -1,10 +1,12 @@
 package com.finanest.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
+
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,11 +14,12 @@ import org.hibernate.criterion.Restrictions;
 
 import com.finanest.Util.HibernateUtil;
 import com.finanest.annotations.Cliente;
+import com.finanest.annotations.Cliente;
 
 @ManagedBean(name="ClienteDAO", eager = true)
 @RequestScoped
 public class ClienteDAO {
-	private Session session;
+	private static Session session;
 	public ClienteDAO(){}
 	
 	public void salvar(Cliente transientInstance) {
@@ -34,7 +37,7 @@ public class ClienteDAO {
 		}
 	}
 	
-	public List listar() {
+	public static List listar() {
 		//log.debug("listing Cliente instances");
 		try {
 			HibernateUtil.setUp();
@@ -49,6 +52,22 @@ public class ClienteDAO {
 			//log.error("list failed", re);
 			throw re;
 		}
+	}
+	
+	private static final ArrayList<Cliente> contatoLista = mapear();
+	public static ArrayList<Cliente> mapear() {
+		ArrayList<Cliente> tabela = new ArrayList<Cliente>();
+		
+		List<Cliente> lista = listar();
+		for (Cliente contato : lista) {
+			tabela.add(contato);
+		}
+		
+		return tabela;
+	}
+	
+	public ArrayList<Cliente> getClienteLista () {
+		return contatoLista;
 	}
 	
 	public void altera(Cliente detachedInstance) {
