@@ -56,6 +56,7 @@ public class ContatoDAO {
 	}
 	
 	private static final ArrayList<Contato> contatoLista = mapear();
+	
 	public static ArrayList<Contato> mapear() {
 		ArrayList<Contato> tabela = new ArrayList<Contato>();
 		
@@ -75,7 +76,7 @@ public class ContatoDAO {
 		//log.debug("listing Contato instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Contato").list();
 			session.getTransaction().commit();

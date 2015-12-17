@@ -14,17 +14,165 @@
 
 		<div id="home" class="container">
 			<div id="conteudo">
-				<h1>Cadastro de Insumos (Produtos/Serviços)</h1>
-				<form name="cadastroInsumo" method="post" action="Menu.html">
+				<h1>Controle de Estoque</h1>
 
-					Insumo <input type="text" name=""><br>
-					<br> Preço <input type="text" name=""><br>
-					<br> <input type="button" name="cadastrar" value="Cancelar">
+				<h2>Estoque</h2>
+				<h:form>
+					<h:dataTable value="#{EstoqueDAO.estoqueLista}" var="est"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ações" />
+							</f:facet>
+							<h:commandLink value="" action="#{EstoqueDAO.altera(est)}">
+								<h:graphicImage value="../img/editar.png"
+									style="width: 25px; height: 25px; " />
+							</h:commandLink>
+							<h:commandLink value="" action="#{EstoqueDAO.remover(est)}">
+								<h:graphicImage value="../img/remover.png"
+									style="width: 25px; height: 25px; " />
+							</h:commandLink>
+						</h:column>
 
-					<input type="button" name="cadastrar" value="Cadastrar">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nº Registro" />
+							</f:facet>
+							<h:outputText value="#{est.idEstoque}" style="size: 2" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="idFornecedor" />
+							</f:facet>
+							<h:inputText tabindex="1" id="idFornecedor" value="#{est.idFornecedor}"
+								onblur="if (this.value == '#{estoqueBean.idFornecedor}'){this.value = '#{est.idFornecedor}'; }"
+								onfocus="if (this.value == '#{est.idFornecedor}') {this.value = '#{estoqueBean.idFornecedor}'; }">
+							</h:inputText>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Insumo" />
+							</f:facet>
+							<h:inputText tabindex="1" id="insumo"
+								value="#{est.insumo}"
+								onblur="if (this.value == '#{estoqueBean.insumo}'){this.value = '#{est.insumo}'; }"
+								onfocus="if (this.value == '#{est.insumo}') {this.value = '#{estoqueBean.insumo}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Preço" />
+							</f:facet>
+							<h:inputText tabindex="1" id="preco" value="#{est.preco}"
+								onblur="if (this.value == '#{estoqueBean.preco}'){this.value = '#{est.preco}'; }"
+								onfocus="if (this.value == '#{est.preco}') {this.value = '#{estoqueBean.preco}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Quantidade" />
+							</f:facet>
+							<h:inputText tabindex="1" id="qtde" value="#{est.qtde}"
+								onblur="if (this.value == '#{estoqueBean.qtde}'){this.value = '#{est.qtde}'; }"
+								onfocus="if (this.value == '#{est.qtde}') {this.value = '#{estoqueBean.qtde}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo" />
+							</f:facet>
+							<h:inputText tabindex="1" id="tipo" value="#{est.tipo}"
+								onblur="if (this.value == '#{estoqueBean.tipo}'){this.value = '#{est.tipo}'; }"
+								onfocus="if (this.value == '#{est.tipo}') {this.value = '#{estoqueBean.tipo}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Data" />
+							</f:facet>
+							<h:inputText tabindex="1" id="data" value="#{est.data}"
+								onblur="if (this.value == '#{estoqueBean.data}'){this.value = '#{est.data}'; }"
+								onfocus="if (this.value == '#{est.data}') {this.value = '#{estoqueBean.data}'; }"
+								size="14">
+							</h:inputText>
+						</h:column>
+
+					</h:dataTable>
+				</h:form>
+				<!-- /Estoque -->
+
+				<h2>Cadastro de Produtos</h2>
+				<h:form>
+					<h:panelGrid id="panel" columns="6" border="0" cellpadding="10"
+						cellspacing="1">
+						<h:outputLabel value="Insumo" for="insumo"
+							onmouseover="exibirmensagem('Informe o produto')"
+							onmouseout="exibirmensagem('')" />
+						<h:inputText tabindex="1" id="insumo"
+							value="#{estoqueBean.insumo}" size="30" label="Informe o produto"
+							required="true">
+							<f:validateLength minimum="2" maximum="30" />
+						</h:inputText>
+						<h:message for="insumo" style="color:red" />
+
+						<h:outputLabel value="Fornecedor" for="idFornecedor"
+							onmouseover="exibirmensagem('Informe qual fornecedor')"
+							onmouseout="exibirmensagem('')" />
+						<h:inputText tabindex="1" id="idFornecedor"
+							value="#{estoqueBean.idFornecedor}" size="30"
+							label="Nome do fornecedor" required="true">
+							<f:validateLength minimum="1" maximum="10" />
+						</h:inputText>
+						<h:message for="idFornecedor" style="color:red" />
+
+						<h:outputLabel value="Preço" for="preco"
+							onmouseover="exibirmensagem('Informe o preço do produto')"
+							onmouseout="exibirmensagem('')" />
+						<h:inputText tabindex="2" id="preco" value="#{estoqueBean.preco}"
+							size="30" label="Preço do produto" required="true">
+							<f:validateLength minimum="1" maximum="11" />
+						</h:inputText>
+						<h:message for="preco" style="color:red" />
+
+						<h:outputLabel value="Quantidade" for="qtde"
+							onmouseover="exibirmensagem('Informe a quatidade de produtos')"
+							onmouseout="exibirmensagem('')" />
+						<h:inputText tabindex="5" id="qtde"
+							value="#{estoqueBean.qtde}" size="30"
+							label="Quantidade de produtos" required="true">
+							<f:validateLength minimum="1" maximum="10" />
+						</h:inputText>
+						<h:message for="qtde" style="color:red" />
+
+						<h:outputLabel value="Tipo de produto" for="tipo"
+							onmouseover="exibirmensagem('Informe o tipo de produto')"
+							onmouseout="exibirmensagem('')" />
+						<h:inputText tabindex="6" id="tipo"
+							value="#{estoqueBean.tipo}" size="30"
+							label="Quantidade de produtos" required="true">
+							<f:validateLength minimum="1" maximum="20" />
+						</h:inputText>
+						<h:message for="tipo" style="color:red" />
+
+					</h:panelGrid>
+					<h:commandButton id="submit" value="Cadastrar"
+						action="#{EstoqueDAO.salvar(estoqueBean)}" />
+					<div id="msg" class="dcontexto"></div>
+
+				</h:form>
 			</div>
-			<!-- /content -->
-		</div>
+			<!-- /Estoque -->
 	</f:view>
 
 </body>

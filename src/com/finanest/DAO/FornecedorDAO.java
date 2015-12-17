@@ -59,7 +59,7 @@ public class FornecedorDAO {
 		//log.debug("listing Fornecedor instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Fornecedor").list();
 			session.getTransaction().commit();

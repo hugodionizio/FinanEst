@@ -59,7 +59,7 @@ public class UsuarioDAO {
 		//log.debug("listing Usuario instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Usuario").list();
 			session.getTransaction().commit();

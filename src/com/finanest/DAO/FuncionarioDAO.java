@@ -59,7 +59,7 @@ public class FuncionarioDAO {
 		//log.debug("listing Funcionario instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Funcionario").list();
 			session.getTransaction().commit();

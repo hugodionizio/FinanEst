@@ -41,7 +41,7 @@ public class ClienteDAO {
 		//log.debug("listing Cliente instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Cliente").list();
 			session.getTransaction().commit();

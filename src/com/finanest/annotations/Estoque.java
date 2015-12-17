@@ -41,21 +41,17 @@ public class Estoque implements java.io.Serializable {
 	private Date data;
 	@ManagedProperty(value="#{data}")
 	private Integer idFornecedor;
-	@ManagedProperty(value="#{idFuncionario}")
-	private Integer idFuncionario;
-
 	public Estoque() {
 	}
 
 	public Estoque(String tipo, String insumo, Float preco, Integer qtde,
-			Date data, Integer idFornecedor, Integer idFuncionario) {
+			Date data, Integer idFornecedor) {
 		this.tipo = tipo;
 		this.insumo = insumo;
 		this.preco = preco;
 		this.qtde = qtde;
 		this.data = data;
 		this.idFornecedor = idFornecedor;
-		this.idFuncionario = idFuncionario;
 	}
 
 	@Id
@@ -124,15 +120,6 @@ public class Estoque implements java.io.Serializable {
 		this.idFornecedor = idFornecedor;
 	}
 
-	@Column(name = "idFUNCIONARIO")
-	public Integer getIdFuncionario() {
-		return this.idFuncionario;
-	}
-
-	public void setIdFuncionario(Integer idFuncionario) {
-		this.idFuncionario = idFuncionario;
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -141,7 +128,7 @@ public class Estoque implements java.io.Serializable {
 		return "Estoque [idEstoque=" + idEstoque + ", tipo=" + tipo
 				+ ", insumo=" + insumo + ", preco=" + preco + ", qtde=" + qtde
 				+ ", data=" + data + ", idFornecedor=" + idFornecedor
-				+ ", idFuncionario=" + idFuncionario + "]";
+				+ "]";
 	}
 
 }

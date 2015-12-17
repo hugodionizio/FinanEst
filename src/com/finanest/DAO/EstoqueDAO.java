@@ -1,6 +1,7 @@
 package com.finanest.DAO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -10,11 +11,13 @@ import javax.faces.bean.ManagedBean;
 
 
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import com.finanest.Util.HibernateUtil;
+import com.finanest.annotations.Contato;
 import com.finanest.annotations.Estoque;
 import com.finanest.annotations.Estoque;
 
@@ -25,12 +28,16 @@ public class EstoqueDAO {
 	public EstoqueDAO(){}
 	
 	public void salvar(Estoque transientInstance) {
+		Estoque transientInstanceTmp = transientInstance;
+		if (transientInstanceTmp.getData() == null)
+			transientInstanceTmp.setData(new Date());
+		
 		//log.debug("persisting Estoque instance");
 		try {
 			HibernateUtil.setUp();
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			session.save(transientInstance);
+			session.save(transientInstanceTmp);
 			session.getTransaction().commit();
 			//log.debug("persist successful");
 		} catch (RuntimeException re) {
@@ -59,7 +66,7 @@ public class EstoqueDAO {
 		//log.debug("listing Estoque instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().openSession();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Estoque").list();
 			session.getTransaction().commit();

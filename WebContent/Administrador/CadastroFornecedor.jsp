@@ -23,6 +23,20 @@
 						rowClasses="order-table-odd-row,order-table-even-row">
 						<h:column>
 							<f:facet name="header">
+								<h:outputText value="Ações" />
+							</f:facet>
+							<h:commandLink value="" action="#{FornecedorDAO.altera(frn)}">
+								<h:graphicImage value="../img/editar.png"
+									style="width: 25px; height: 25px; " />
+							</h:commandLink>
+							<h:commandLink value="" action="#{FornecedorDAO.remover(frn)}">
+								<h:graphicImage value="../img/remover.png"
+									style="width: 25px; height: 25px; " />
+							</h:commandLink>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
 								<h:outputText value="Nº Registro" />
 							</f:facet>
 							<h:outputText value="#{frn.idFornecedor}" style="size: 2" />
@@ -42,7 +56,8 @@
 							<f:facet name="header">
 								<h:outputText value="Nome Fantasia" />
 							</f:facet>
-							<h:inputText tabindex="1" id="nmfantasia" value="#{frn.nmfantasia}"
+							<h:inputText tabindex="1" id="nmfantasia"
+								value="#{frn.nmfantasia}"
 								onblur="if (this.value == '#{fornecedorBean.nmfantasia}'){this.value = '#{frn.nmfantasia}'; }"
 								onfocus="if (this.value == '#{frn.nmfantasia}') {this.value = '#{fornecedorBean.nmfantasia}'; }"
 								size="14">
@@ -103,7 +118,7 @@
 								size="16">
 							</h:inputText>
 						</h:column>
-						
+
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Site" />
@@ -113,20 +128,6 @@
 								onfocus="if (this.value == '#{frn.site}') {this.value = '#{fornecedorBean.site}'; }"
 								size="16">
 							</h:inputText>
-						</h:column>
-
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Ações" />
-							</f:facet>
-							<h:commandLink value="" action="#{FornecedorDAO.altera(frn)}">
-								<h:graphicImage value="../img/editar.png"
-									style="width: 25px; height: 25px; " />
-							</h:commandLink>
-							<h:commandLink value="" action="#{FornecedorDAO.remover(frn)}">
-								<h:graphicImage value="../img/remover.png"
-									style="width: 25px; height: 25px; " />
-							</h:commandLink>
 						</h:column>
 					</h:dataTable>
 				</h:form>
@@ -202,12 +203,12 @@
 							<f:validateLength minimum="1" maximum="30" />
 						</h:inputText>
 						<h:message for="eMail" style="color:red" />
-						
+
 						<h:outputLabel value="Site" for="site"
 							onmouseover="exibirmensagem('Informe o site')"
 							onmouseout="exibirmensagem('')" />
-						<h:inputText tabindex="8" id="site"
-							value="#{fornecedorBean.site}" size="30" label="Site">
+						<h:inputText tabindex="8" id="site" value="#{fornecedorBean.site}"
+							size="30" label="Site">
 						</h:inputText>
 					</h:panelGrid>
 					<h:commandButton id="submit" value="Cadastrar"

@@ -32,18 +32,18 @@
 					<h:graphicImage value="../img/sair.png"
 									style="width: 25px; height: 25px; " />
 					</h:commandLink></a></li>
-					<li><h:commandLink value="Dados da Empresa"
+					<!-- li><h:commandLink value="Dados da Empresa"
 							action="DadosEmpresa.jsp" /></a></li>
 					<li><h:commandLink value="Funcionários"
-							action="CadastroFuncionario.jsp" /></a></li>
+							action="CadastroFuncionario.jsp" /></a></li -->
 					<li><h:commandLink value="Fornecedores"
 							action="CadastroFornecedor.jsp" /></a></li>
 					<li><h:commandLink value="Estoque"
 							action="GerenciarEstoque.jsp" /></a></li>
 					<li><h:commandLink value="Reposição" action="ReporEstoque.jsp" /></a></li>
 					<li><h:commandLink value="Livro Caixa" action="LivroCaixa.jsp" /></a></li>
-					<li><h:commandLink value="Projeção de Caixa"
-							action="ProjetarCaixa.jsp" /></a></li>
+					<!-- li><h:commandLink value="Projeção de Caixa"
+							action="ProjetarCaixa.jsp" /></a></li -->
 					<li><h:commandLink value="Clientes"
 							action="GerenciarClientes.jsp" /></a></li>
 					<li><h:commandLink value="Contatos" action="Contatos.jsp" /></a></li>

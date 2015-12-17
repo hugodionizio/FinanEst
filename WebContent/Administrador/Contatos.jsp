@@ -29,6 +29,16 @@
 							rowClasses="order-table-odd-row,order-table-even-row">
 							<h:column>
 								<f:facet name="header">
+									<h:outputText value="Ações" />
+								</f:facet>
+								<h:commandLink value="" action="#{ContatoDAO.remover(con)}">
+									<h:graphicImage value="../img/remover.png"
+										style="width: 25px; height: 25px; " />
+								</h:commandLink>
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
 									<h:outputText value="Nº Registro" />
 								</f:facet>
 								<h:outputText value="#{con.idContato}" />
@@ -74,17 +84,6 @@
 									<h:outputText value="Data" />
 								</f:facet>
 								<h:outputText value="#{con.data}" />
-							</h:column>
-
-							<h:column>
-								<f:facet name="header">
-									<h:outputText value="Ações" />
-								</f:facet>
-								<h:commandLink value=""
-									action="#{ContatoDAO.remover(con)}">
-									<h:graphicImage value="../img/remover.png"
-										style="width: 25px; height: 25px; " />
-								</h:commandLink>
 							</h:column>
 						</h:dataTable>
 					</h:form>
