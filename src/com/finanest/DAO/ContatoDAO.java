@@ -45,6 +45,7 @@ public class ContatoDAO {
 			session.beginTransaction();
 			session.save(transientInstanceTmp);
 			session.getTransaction().commit();
+			contatoLista = mapear();
 			// log.debug("persist successful");
 		} catch (RuntimeException re) {
 			// log.error("persist failed", re);
@@ -52,15 +53,22 @@ public class ContatoDAO {
 		}
 	}
 
-	public ArrayList<Contato> getContatoLista() {
+private static ArrayList<Contato> contatoLista = mapear();
+	
+	public static ArrayList<Contato> mapear() {
 		ArrayList<Contato> tabela = new ArrayList<Contato>();
-
+		
 		List<Contato> lista = listar();
 		for (Contato contato : lista) {
 			tabela.add(contato);
 		}
-
+		
 		return tabela;
+	}
+	
+	public ArrayList<Contato> getContatoLista () {
+		return contatoLista;
+		//return mapear();
 	}
 
 	public static List listar() {
@@ -144,6 +152,7 @@ public class ContatoDAO {
 			session.beginTransaction();
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
+			contatoLista = mapear();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);

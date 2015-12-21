@@ -35,6 +35,7 @@ public class CaixaDAO {
 			session.beginTransaction();
 			session.save(transientInstance);
 			session.getTransaction().commit();
+			itemLista = mapear();
 			// log.debug("persist successful");
 		} catch (RuntimeException re) {
 			// log.error("persist failed", re);
@@ -107,7 +108,9 @@ public class CaixaDAO {
 		salvar(caixa);
 	}
 
-	public ArrayList<Caixa> getCaixaLista() {
+	private static ArrayList<Caixa> itemLista = mapear();
+
+	public static ArrayList<Caixa> mapear() {
 		ArrayList<Caixa> tabela = new ArrayList<Caixa>();
 
 		List<Caixa> lista = listar();
@@ -116,6 +119,10 @@ public class CaixaDAO {
 		}
 
 		return tabela;
+	}
+
+	public ArrayList<Caixa> getCaixaLista() {
+		return itemLista;
 	}
 
 	public static List listar() {
@@ -143,6 +150,7 @@ public class CaixaDAO {
 			session.beginTransaction();
 			session.update(detachedInstance);
 			session.getTransaction().commit();
+			itemLista = mapear();
 			// log.debug("update successful");
 		} catch (RuntimeException re) {
 			// log.error("update failed", re);
@@ -158,6 +166,7 @@ public class CaixaDAO {
 			session.beginTransaction();
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
+			itemLista = mapear();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);

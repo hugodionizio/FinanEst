@@ -49,6 +49,8 @@ public class EstoqueDAO {
 				session.beginTransaction();
 				session.save(transientInstanceTmp);
 				session.getTransaction().commit();
+				itemLista = mapear();
+				selecao = agrupar();
 				// log.debug("persist successful");
 			} catch (RuntimeException re) {
 				// log.error("persist failed", re);
@@ -59,7 +61,9 @@ public class EstoqueDAO {
 
 	// Listar
 	// ArrayList
-	public ArrayList<Estoque> getEstoqueLista() {
+	private static ArrayList<Estoque> itemLista = mapear();
+
+	public static ArrayList<Estoque> mapear() {
 		ArrayList<Estoque> tabela = new ArrayList<Estoque>();
 
 		List<Estoque> lista = listar();
@@ -68,6 +72,10 @@ public class EstoqueDAO {
 		}
 
 		return tabela;
+	}
+
+	public ArrayList<Estoque> getEstoqueLista() {
+		return itemLista;
 	}
 
 	// List
@@ -89,7 +97,9 @@ public class EstoqueDAO {
 	}
 
 	// Seleção
-	public List<SelectItem> getMenuLista() {
+	private static List<SelectItem> selecao = agrupar();
+
+	public static List<SelectItem> agrupar() {
 		List<SelectItem> menu = new ArrayList<SelectItem>();
 
 		List<Estoque> lista = listar();
@@ -101,18 +111,18 @@ public class EstoqueDAO {
 			if (item.getTipo().equalsIgnoreCase("Produto")) {
 				String itemNome = item.getInsumo();
 				itemNome += " (";
-				// itemNome += item.getIdFornecedor();
-				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item
-						.getIdFornecedor());
+//				itemNome += item.getIdFornecedor();
+				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item.getIdFornecedor());
 				itemNome += ") R$ ";
 				itemNome += item.getPreco();
 				itemNome += "(";
 				itemNome += item.getQtde();
 				itemNome += " em estoque)";
-
+				
 				itensProdutos[i] = new SelectItem(item.getIdEstoque(), itemNome);
 				i++;
-			} else
+			}
+			else
 				i++;
 		}
 		if (itensProdutos[0] != null)
@@ -131,15 +141,15 @@ public class EstoqueDAO {
 			if (item.getTipo().equalsIgnoreCase("Serviço")) {
 				String itemNome = item.getInsumo();
 				itemNome += " (";
-				// itemNome += item.getIdFornecedor();
-				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item
-						.getIdFornecedor());
+//				itemNome += item.getIdFornecedor();
+				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item.getIdFornecedor());
 				itemNome += ") R$ ";
 				itemNome += item.getPreco();
 
 				itensServicos[i] = new SelectItem(item.getIdEstoque(), itemNome);
 				i++;
-			} else
+			}
+			else
 				i++;
 		}
 		if (itensServicos[0] != null)
@@ -148,10 +158,14 @@ public class EstoqueDAO {
 			SelectItem nenhumServico[] = new SelectItem[1];
 			nenhumServico[0] = new SelectItem("", "Nenhum serviço");
 			servicos.setSelectItems(nenhumServico);
-		}
+		}		
 		menu.add(servicos);
-
+		
 		return menu;
+	}
+
+	public List<SelectItem> getMenuLista() {
+		return selecao;
 	}
 
 	// Busca
@@ -236,6 +250,8 @@ public class EstoqueDAO {
 			session.beginTransaction();
 			session.update(detachedInstanceTmp);
 			session.getTransaction().commit();
+			itemLista = mapear();
+			selecao = agrupar();
 			// log.debug("update successful");
 		} catch (RuntimeException re) {
 			// log.error("update failed", re);
@@ -261,6 +277,8 @@ public class EstoqueDAO {
 			session.beginTransaction();
 			session.update(detachedInstanceTmp);
 			session.getTransaction().commit();
+			itemLista = mapear();
+			selecao = agrupar();
 			// log.debug("update successful");
 		} catch (RuntimeException re) {
 			// log.error("update failed", re);
@@ -277,6 +295,8 @@ public class EstoqueDAO {
 			session.beginTransaction();
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
+			itemLista = mapear();
+			selecao = agrupar();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);

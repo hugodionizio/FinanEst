@@ -31,6 +31,7 @@ public class ClienteDAO {
 			session.beginTransaction();
 			session.save(transientInstance);
 			session.getTransaction().commit();
+			clienteLista = mapear();
 			// log.debug("persist successful");
 		} catch (RuntimeException re) {
 			// log.error("persist failed", re);
@@ -42,7 +43,7 @@ public class ClienteDAO {
 		// log.debug("listing Cliente instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Cliente").list();
 			session.getTransaction().commit();
@@ -55,25 +56,32 @@ public class ClienteDAO {
 		}
 	}
 
-	public ArrayList<Cliente> getClienteLista() {
+	private static ArrayList<Cliente> clienteLista = mapear();
+	public static ArrayList<Cliente> mapear() {
 		ArrayList<Cliente> tabela = new ArrayList<Cliente>();
-
+		
 		List<Cliente> lista = listar();
 		for (Cliente cliente : lista) {
 			tabela.add(cliente);
 		}
-
+		
 		return tabela;
+	}
+	
+	public ArrayList<Cliente> getClienteLista () {
+		return clienteLista;
 	}
 
 	public void altera(Cliente detachedInstance) {
+		System.out.print(detachedInstance.toString());
 		// log.debug("updating Cliente instance");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			session.update(detachedInstance);
 			session.getTransaction().commit();
+			clienteLista = mapear();
 			// log.debug("update successful");
 		} catch (RuntimeException re) {
 			// log.error("update failed", re);
@@ -89,6 +97,7 @@ public class ClienteDAO {
 			session.beginTransaction();
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
+			clienteLista = mapear();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);
@@ -105,7 +114,7 @@ public class ClienteDAO {
 		// " and senha: " + senha);
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 
 			Cliente cliente = (Cliente) session.createCriteria(Cliente.class)
@@ -126,6 +135,7 @@ public class ClienteDAO {
 			if (cliente != null) {
 				// user = cliente.getIdCliente();
 				System.out.println("OK");
+				clienteLista = mapear();
 				return "Cliente/AreaCliente?login="
 						+ cliente.getIdCliente().toString();
 			} else {

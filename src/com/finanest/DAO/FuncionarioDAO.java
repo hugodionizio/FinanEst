@@ -31,6 +31,7 @@ public class FuncionarioDAO {
 			session.beginTransaction();
 			session.save(transientInstance);
 			session.getTransaction().commit();
+			funcionarioLista = mapear();
 			// log.debug("persist successful");
 		} catch (RuntimeException re) {
 			// log.error("persist failed", re);
@@ -38,15 +39,20 @@ public class FuncionarioDAO {
 		}
 	}
 
-	public ArrayList<Funcionario> getFuncionarioLista() {
+	private static ArrayList<Funcionario> funcionarioLista = mapear();
+	public static ArrayList<Funcionario> mapear() {
 		ArrayList<Funcionario> tabela = new ArrayList<Funcionario>();
-
+		
 		List<Funcionario> lista = listar();
 		for (Funcionario funcionario : lista) {
 			tabela.add(funcionario);
 		}
-
+		
 		return tabela;
+	}
+	
+	public ArrayList<Funcionario> getFuncionarioLista () {
+		return funcionarioLista;
 	}
 
 	public static List listar() {
@@ -89,6 +95,7 @@ public class FuncionarioDAO {
 			session.beginTransaction();
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
+			funcionarioLista = mapear();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);

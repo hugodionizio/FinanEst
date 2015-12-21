@@ -31,6 +31,7 @@ public class UsuarioDAO {
 			session.beginTransaction();
 			session.save(transientInstance);
 			session.getTransaction().commit();
+			usuarioLista = mapear();
 			// log.debug("persist successful");
 		} catch (RuntimeException re) {
 			// log.error("persist failed", re);
@@ -38,15 +39,20 @@ public class UsuarioDAO {
 		}
 	}
 
-	public ArrayList<Usuario> getUsuarioLista() {
+	private static ArrayList<Usuario> usuarioLista = mapear();
+	public static ArrayList<Usuario> mapear() {
 		ArrayList<Usuario> tabela = new ArrayList<Usuario>();
-
+		
 		List<Usuario> lista = listar();
 		for (Usuario usuario : lista) {
 			tabela.add(usuario);
 		}
-
+		
 		return tabela;
+	}
+	
+	public ArrayList<Usuario> getUsuarioLista () {
+		return usuarioLista;
 	}
 
 	public static List listar() {
@@ -89,6 +95,7 @@ public class UsuarioDAO {
 			session.beginTransaction();
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
+			usuarioLista = mapear();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);
