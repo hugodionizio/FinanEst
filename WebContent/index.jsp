@@ -36,6 +36,7 @@
 
 						<h1>FinanEst</h1>
 						<p>Sistema Financeiro e de Estoque</p>
+						<h:inputHidden value="#{ClienteDAO.logoutCliente()}" />
 					</div>
 
 					<h:form>

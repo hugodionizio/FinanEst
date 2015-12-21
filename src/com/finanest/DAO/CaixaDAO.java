@@ -129,7 +129,7 @@ public class CaixaDAO {
 		// log.debug("listing Caixa instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Caixa").list();
 			session.getTransaction().commit();

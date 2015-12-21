@@ -19,6 +19,7 @@
 
 						<h1>FinanEst</h1>
 						<p>Sistema Financeiro e de Estoque</p>
+						<h:outputText value="Olá, #{ClienteDAO.clienteSession.nome}!" />
 												
 					</div>
 				</div>

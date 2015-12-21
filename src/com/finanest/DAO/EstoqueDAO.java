@@ -50,7 +50,7 @@ public class EstoqueDAO {
 				session.save(transientInstanceTmp);
 				session.getTransaction().commit();
 				itemLista = mapear();
-				selecao = agrupar();
+				//selecao = agrupar();
 				// log.debug("persist successful");
 			} catch (RuntimeException re) {
 				// log.error("persist failed", re);
@@ -83,7 +83,7 @@ public class EstoqueDAO {
 		// log.debug("listing Estoque instances");
 		try {
 			HibernateUtil.setUp();
-			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			List results = session.createQuery("from Estoque").list();
 			session.getTransaction().commit();
@@ -97,8 +97,8 @@ public class EstoqueDAO {
 	}
 
 	// Seleção
-	private static List<SelectItem> selecao = agrupar();
-
+	public static List<SelectItem> selecao = agrupar();
+	
 	public static List<SelectItem> agrupar() {
 		List<SelectItem> menu = new ArrayList<SelectItem>();
 
@@ -107,25 +107,27 @@ public class EstoqueDAO {
 		SelectItemGroup produtos = new SelectItemGroup("Produto");
 		SelectItem itensProdutos[] = new SelectItem[lista.size()];
 		int i = 0;
+		int numProdutos = 0;
 		for (Estoque item : lista) {
 			if (item.getTipo().equalsIgnoreCase("Produto")) {
 				String itemNome = item.getInsumo();
 				itemNome += " (";
-//				itemNome += item.getIdFornecedor();
-				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item.getIdFornecedor());
+				// itemNome += item.getIdFornecedor();
+				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item
+						.getIdFornecedor());
 				itemNome += ") R$ ";
 				itemNome += item.getPreco();
-				itemNome += "(";
+				itemNome += " (";
 				itemNome += item.getQtde();
 				itemNome += " em estoque)";
-				
+
 				itensProdutos[i] = new SelectItem(item.getIdEstoque(), itemNome);
 				i++;
-			}
-			else
+				numProdutos++;
+			} else
 				i++;
 		}
-		if (itensProdutos[0] != null)
+		if (numProdutos > 0)
 			produtos.setSelectItems(itensProdutos);
 		else {
 			SelectItem nenhumProduto[] = new SelectItem[1];
@@ -137,35 +139,48 @@ public class EstoqueDAO {
 		SelectItemGroup servicos = new SelectItemGroup("Serviço");
 		SelectItem itensServicos[] = new SelectItem[lista.size()];
 		i = 0;
+		int numServicos = 0;
 		for (Estoque item : lista) {
 			if (item.getTipo().equalsIgnoreCase("Serviço")) {
 				String itemNome = item.getInsumo();
 				itemNome += " (";
-//				itemNome += item.getIdFornecedor();
-				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item.getIdFornecedor());
+				// itemNome += item.getIdFornecedor();
+				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item
+						.getIdFornecedor());
 				itemNome += ") R$ ";
 				itemNome += item.getPreco();
+				itemNome += " (";
+				itemNome += item.getQtde();
+				itemNome += " à disposição)";
 
 				itensServicos[i] = new SelectItem(item.getIdEstoque(), itemNome);
 				i++;
-			}
-			else
+				numServicos++;
+			} else
 				i++;
 		}
-		if (itensServicos[0] != null)
+		if (numServicos > 0)
 			servicos.setSelectItems(itensServicos);
 		else {
 			SelectItem nenhumServico[] = new SelectItem[1];
 			nenhumServico[0] = new SelectItem("", "Nenhum serviço");
 			servicos.setSelectItems(nenhumServico);
-		}		
+		}
 		menu.add(servicos);
-		
+
 		return menu;
 	}
-
+	
 	public List<SelectItem> getMenuLista() {
-		return selecao;
+		try {
+			return selecao;
+		} catch (Exception e) {
+			List<SelectItem> menu = new ArrayList<SelectItem>();
+			SelectItem semItens = new SelectItem("", "Nada disponível");
+			menu.add(semItens);
+			
+			return menu;
+		}
 	}
 
 	// Busca
@@ -251,7 +266,7 @@ public class EstoqueDAO {
 			session.update(detachedInstanceTmp);
 			session.getTransaction().commit();
 			itemLista = mapear();
-			selecao = agrupar();
+			//selecao = agrupar();
 			// log.debug("update successful");
 		} catch (RuntimeException re) {
 			// log.error("update failed", re);
@@ -278,7 +293,7 @@ public class EstoqueDAO {
 			session.update(detachedInstanceTmp);
 			session.getTransaction().commit();
 			itemLista = mapear();
-			selecao = agrupar();
+			//selecao = agrupar();
 			// log.debug("update successful");
 		} catch (RuntimeException re) {
 			// log.error("update failed", re);
@@ -296,7 +311,7 @@ public class EstoqueDAO {
 			session.delete(persistentInstance);
 			session.getTransaction().commit();
 			itemLista = mapear();
-			selecao = agrupar();
+			//selecao = agrupar();
 			// log.debug("delete successful");
 		} catch (RuntimeException re) {
 			// log.error("delete failed", re);

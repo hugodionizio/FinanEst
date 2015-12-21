@@ -19,6 +19,7 @@
 
 						<h1>FinanEst</h1>
 						<p>Sistema Financeiro e de Estoque</p>
+						Olá! Você está na administração!
 					</div>
 				</div>
 			</div>

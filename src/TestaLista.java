@@ -15,6 +15,6 @@ public class TestaLista {
 		}
 		
 		EstoqueDAO daoEstoque = new EstoqueDAO();
-		daoEstoque.getMenuLista();
+		System.out.print(daoEstoque.getMenuLista());
 	}
 }

@@ -19,6 +19,16 @@ import com.finanest.annotations.Cliente;
 @RequestScoped
 public class ClienteDAO {
 	private static Session session;
+	
+	public static Cliente clienteSession = null;
+	
+	public Cliente getClienteSession () {
+		return clienteSession;
+	}
+	
+	public void logoutCliente () {
+		clienteSession = null;
+	}
 
 	public ClienteDAO() {
 	}
@@ -136,6 +146,7 @@ public class ClienteDAO {
 				// user = cliente.getIdCliente();
 				System.out.println("OK");
 				clienteLista = mapear();
+				clienteSession = cliente;
 				return "Cliente/AreaCliente?login="
 						+ cliente.getIdCliente().toString();
 			} else {

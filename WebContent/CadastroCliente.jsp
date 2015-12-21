@@ -30,6 +30,7 @@
 		<div id="home" class="container">
 			<div id="conteudo">
 				<h1>Cadastro de Cliente</h1>
+				<h:outputText value="#{ClienteDAO.clienteSession.nome}" />
 			</div>
 			<h:form>
 				<h:panelGrid id="panel" columns="6" border="0" cellpadding="10"
