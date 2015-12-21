@@ -41,9 +41,7 @@ public class FornecedorDAO {
 		}
 	}
 
-	private static final ArrayList<Fornecedor> fornecedorLista = mapear();
-
-	public static ArrayList<Fornecedor> mapear() {
+	public ArrayList<Fornecedor> getFornecedorLista() {
 		ArrayList<Fornecedor> tabela = new ArrayList<Fornecedor>();
 
 		List<Fornecedor> lista = listar();
@@ -52,10 +50,6 @@ public class FornecedorDAO {
 		}
 
 		return tabela;
-	}
-
-	public ArrayList<Fornecedor> getFornecedorLista() {
-		return fornecedorLista;
 	}
 
 	public static List listar() {
@@ -111,10 +105,11 @@ public class FornecedorDAO {
 			HibernateUtil.setUp();
 			session = HibernateUtil.getSessionFactory().getCurrentSession();
 			session.beginTransaction();
-			
-			Fornecedor fornecedor = (Fornecedor) session.createCriteria(Fornecedor.class)
+
+			Fornecedor fornecedor = (Fornecedor) session
+					.createCriteria(Fornecedor.class)
 					.add(Restrictions.idEq(idFornecedor)).uniqueResult();
-			
+
 			session.getTransaction().commit();
 			return fornecedor.getNmfantasia();
 

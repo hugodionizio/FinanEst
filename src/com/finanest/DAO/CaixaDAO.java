@@ -8,7 +8,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -62,15 +61,15 @@ public class CaixaDAO {
 				+ transientInstanceTmp.getInsumo();
 		caixa.setHistorico(historico);
 
-		String complemento = (new FornecedorDAO()).buscarNomeFantasia(transientInstanceTmp.getIdFornecedor());
+		String complemento = (new FornecedorDAO())
+				.buscarNomeFantasia(transientInstanceTmp.getIdFornecedor());
 		caixa.setComplemento(complemento);
 
 		List<Caixa> listaItens = listar();
 		if ((listaItens.size() - 1) >= 0) {
 			Double saldo = listaItens.get(listaItens.size() - 1).getSaldo();
-			caixa.setSaldo(saldo - saida);			
-		}
-		else
+			caixa.setSaldo(saldo - saida);
+		} else
 			caixa.setSaldo(0 - saida);
 
 		salvar(caixa);
@@ -101,17 +100,14 @@ public class CaixaDAO {
 		List<Caixa> listaItens = listar();
 		if ((listaItens.size() - 1) >= 0) {
 			Double saldo = listaItens.get(listaItens.size() - 1).getSaldo();
-			caixa.setSaldo(saldo + entrada);			
-		}
-		else
+			caixa.setSaldo(saldo + entrada);
+		} else
 			caixa.setSaldo(0 + entrada);
 
 		salvar(caixa);
 	}
-	
-	private static final ArrayList<Caixa> itemLista = mapear();
 
-	public static ArrayList<Caixa> mapear() {
+	public ArrayList<Caixa> getCaixaLista() {
 		ArrayList<Caixa> tabela = new ArrayList<Caixa>();
 
 		List<Caixa> lista = listar();
@@ -120,10 +116,6 @@ public class CaixaDAO {
 		}
 
 		return tabela;
-	}
-
-	public ArrayList<Caixa> getCaixaLista() {
-		return itemLista;
 	}
 
 	public static List listar() {

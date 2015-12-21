@@ -56,7 +56,8 @@
 							<f:facet name="header">
 								<h:outputText value="Histórico" />
 							</f:facet>
-							<h:inputText tabindex="1" id="historico" value="#{livro.historico}"
+							<h:inputText tabindex="1" id="historico"
+								value="#{livro.historico}"
 								onblur="if (this.value == '#{caixaBean.historico}'){this.value = '#{livro.historico}'; }"
 								onfocus="if (this.value == '#{livro.historico}') {this.value = '#{caixaBean.historico}'; }"
 								size="14">
@@ -84,7 +85,7 @@
 								size="14">
 							</h:inputText>
 						</h:column>
-						
+
 						<h:column>
 							<f:facet name="header">
 								<h:outputText value="Saídas" />
@@ -108,16 +109,17 @@
 						</h:column>
 					</h:dataTable>
 				</h:form>
-				<!-- /Livro-Caixa -->
-				<input type="button" value="Mês anterior" onclick="mesAnterior();">
-				<input type="button" value="Mês posterior" onclick="mesPosterior();"><br>
-
-				<input type="button" value="Ano anterior" onclick="anoAnterior();">
-				<input type="button" value="Ano posterior" onclick="anoposterior();"><br>
-
-				<input type="button" value="Enviar para contador"
-					onclick="contador();">
 			</div>
+			<!-- /Livro-Caixa -->
+			<input type="button" value="Mês anterior" onclick="mesAnterior();">
+			<input type="button" value="Mês posterior" onclick="mesPosterior();"><br>
+
+			<input type="button" value="Ano anterior" onclick="anoAnterior();">
+			<input type="button" value="Ano posterior" onclick="anoposterior();"><br>
+
+			<input type="button" value="Enviar para contador"
+				onclick="contador();">
+		</div>
 	</f:view>
 </body>
 </html>

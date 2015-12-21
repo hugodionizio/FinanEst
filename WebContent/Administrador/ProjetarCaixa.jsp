@@ -34,7 +34,7 @@
 					<div align="center">
 						<div class="demo-container">
 							<jsp:useBean id="periodoSaldo"
-								class="de.laures.cewolf.example.PageViewCountData" />
+								class="com.finanest.Util.ProjecaoCaixaUtil" />
 							<cewolf:chart id="line" type="line" xaxislabel="Período"
 								yaxislabel="Saldo">
 								<cewolf:chartpostprocessor id="periodoSaldo" />

@@ -1,10 +1,14 @@
-package de.laures.cewolf.example;
+package com.finanest.Util;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,6 +19,11 @@ import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import com.finanest.DAO.CaixaDAO;
+import com.finanest.DAO.ContatoDAO;
+import com.finanest.annotations.Caixa;
+import com.finanest.annotations.Contato;
 
 import de.laures.cewolf.ChartPostProcessor;
 import de.laures.cewolf.DatasetProduceException;
@@ -27,11 +36,13 @@ import de.laures.cewolf.tooltips.CategoryToolTipGenerator;
  * 
  * @author Guido Laures
  */
-public class oldPageViewCountData implements DatasetProducer,
+@ManagedBean(name="ProjecaoCaixa", eager = true)
+@RequestScoped
+public class ProjecaoCaixaUtil implements DatasetProducer,
 		CategoryToolTipGenerator, CategoryItemLinkGenerator,
 		ChartPostProcessor, Serializable {
 
-	private static final Log log = LogFactory.getLog(oldPageViewCountData.class);
+	private static final Log log = LogFactory.getLog(ProjecaoCaixaUtil.class);
 
 	// These values would normally not be hard coded but produced by
 	// some kind of data source like a database or a file
@@ -58,56 +69,30 @@ public class oldPageViewCountData implements DatasetProducer,
 		};
 		
 		int numCategorias = categories.length;
-		int intermediarias = (int)(numCategorias/12);
+		int intermediarias;
+		if (numCategorias >= 12)
+			intermediarias = (int)(numCategorias/12);
+		else
+			intermediarias = 1;
+		
+		@SuppressWarnings("unchecked")
+		List<Caixa> caixa = (new CaixaDAO()).listar();
 		
 		// Curva das Entradas
-		int entradas[] = new int[numCategorias];
-		int lastY = (int) (Math.random() * 1000 + 1000);
-		for (int i = 0; i < numCategorias; i++) {
-			
-			final int y = lastY + (int) (Math.random() * 200 - 100);
-			lastY = y;
-			entradas[i] = y;
-			String categoria;
-			if ((i+1)%(intermediarias)!=0)
-				categoria = "Intermediária";
-			else
-				categoria = categories[i];
-			dataset.addValue(entradas[i], seriesNames[0], categoria);
-		}
+		for (Caixa registro : caixa) {
+			dataset.addValue(registro.getEntrada(), seriesNames[0], registro.getData());
+		}		
 		
 		// Curva das Saídas
-		int saidas[] = new int[numCategorias];
-		lastY = (int) (Math.random() * 1000 + 1000);
-		for (int i = 0; i < numCategorias; i++) {
-			
-			final int y = lastY + (int) (Math.random() * 200 - 100);
-			lastY = y;
-			saidas[i] = y;
-			String categoria;
-			if ((i+1)%(intermediarias)!=0)
-				categoria = "Intermediária";
-			else
-				categoria = categories[i];
-			dataset.addValue(saidas[i], seriesNames[1], categoria);
+		for (Caixa registro : caixa) {
+			dataset.addValue(registro.getSaida(), seriesNames[1], registro.getData());
 		}
 		
 		// Curva do Saldo
-		lastY = (int) (Math.random() * 1000 + 1000);
-		for (int i = 0; i < numCategorias; i++) {
-			
-			int y = entradas[i] - saidas[i];
-			String categoria;
-			if ((i+1)%(intermediarias)!=0)
-				categoria = "Intermediária";
-			else
-				categoria = categories[i];
-			dataset.addValue(y, seriesNames[2], categoria);
-		}
-/*		for (int series = 0; series < seriesNames.length; series++) {
-
-		}
-*/
+		for (Caixa registro : caixa) {
+			dataset.addValue(registro.getSaldo(), seriesNames[2], registro.getData());
+		}		
+		
 		return dataset;
 	}
 
@@ -124,7 +109,7 @@ public class oldPageViewCountData implements DatasetProducer,
 	 * Returns a unique ID for this DatasetProducer
 	 */
 	public String getProducerId() {
-		return "PageViewCountData DatasetProducer";
+		return "ProjecaoCaixaUtil DatasetProducer";
 	}
 
 	/**

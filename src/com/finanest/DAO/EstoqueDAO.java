@@ -59,9 +59,7 @@ public class EstoqueDAO {
 
 	// Listar
 	// ArrayList
-	private static final ArrayList<Estoque> itemLista = mapear();
-
-	public static ArrayList<Estoque> mapear() {
+	public ArrayList<Estoque> getEstoqueLista() {
 		ArrayList<Estoque> tabela = new ArrayList<Estoque>();
 
 		List<Estoque> lista = listar();
@@ -70,10 +68,6 @@ public class EstoqueDAO {
 		}
 
 		return tabela;
-	}
-
-	public ArrayList<Estoque> getEstoqueLista() {
-		return itemLista;
 	}
 
 	// List
@@ -93,11 +87,9 @@ public class EstoqueDAO {
 			throw re;
 		}
 	}
-	
-	//		Seleção
-	private final static List<SelectItem> selecao = agrupar();
 
-	public static List<SelectItem> agrupar() {
+	// Seleção
+	public List<SelectItem> getMenuLista() {
 		List<SelectItem> menu = new ArrayList<SelectItem>();
 
 		List<Estoque> lista = listar();
@@ -109,18 +101,18 @@ public class EstoqueDAO {
 			if (item.getTipo().equalsIgnoreCase("Produto")) {
 				String itemNome = item.getInsumo();
 				itemNome += " (";
-//				itemNome += item.getIdFornecedor();
-				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item.getIdFornecedor());
+				// itemNome += item.getIdFornecedor();
+				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item
+						.getIdFornecedor());
 				itemNome += ") R$ ";
 				itemNome += item.getPreco();
 				itemNome += "(";
 				itemNome += item.getQtde();
 				itemNome += " em estoque)";
-				
+
 				itensProdutos[i] = new SelectItem(item.getIdEstoque(), itemNome);
 				i++;
-			}
-			else
+			} else
 				i++;
 		}
 		if (itensProdutos[0] != null)
@@ -139,15 +131,15 @@ public class EstoqueDAO {
 			if (item.getTipo().equalsIgnoreCase("Serviço")) {
 				String itemNome = item.getInsumo();
 				itemNome += " (";
-//				itemNome += item.getIdFornecedor();
-				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item.getIdFornecedor());
+				// itemNome += item.getIdFornecedor();
+				itemNome += (new FornecedorDAO()).buscarNomeFantasia(item
+						.getIdFornecedor());
 				itemNome += ") R$ ";
 				itemNome += item.getPreco();
 
 				itensServicos[i] = new SelectItem(item.getIdEstoque(), itemNome);
 				i++;
-			}
-			else
+			} else
 				i++;
 		}
 		if (itensServicos[0] != null)
@@ -156,14 +148,10 @@ public class EstoqueDAO {
 			SelectItem nenhumServico[] = new SelectItem[1];
 			nenhumServico[0] = new SelectItem("", "Nenhum serviço");
 			servicos.setSelectItems(nenhumServico);
-		}		
+		}
 		menu.add(servicos);
-		
-		return menu;
-	}
 
-	public List<SelectItem> getMenuLista() {
-		return selecao;
+		return menu;
 	}
 
 	// Busca
@@ -192,7 +180,7 @@ public class EstoqueDAO {
 
 			Estoque item = (Estoque) session.createCriteria(Estoque.class)
 					.add(Restrictions.idEq(idEstoque)).uniqueResult();
-			
+
 			session.getTransaction().commit();
 			return item;
 		} catch (RuntimeException re) {
@@ -232,11 +220,15 @@ public class EstoqueDAO {
 
 	public void repor(Estoque detachedInstance) {
 		(new CaixaDAO()).salvar(detachedInstance);
-		
-		Estoque detachedInstanceTmp = buscarItemPorIdEstoque(detachedInstance.getIdEstoque());
-		detachedInstanceTmp.setData(detachedInstance.getData() == null ?  new Date() : detachedInstance.getData());
-		detachedInstanceTmp.setQtde(detachedInstanceTmp.getQtde()+detachedInstance.getQtde());
-				
+
+		Estoque detachedInstanceTmp = buscarItemPorIdEstoque(detachedInstance
+				.getIdEstoque());
+		detachedInstanceTmp
+				.setData(detachedInstance.getData() == null ? new Date()
+						: detachedInstance.getData());
+		detachedInstanceTmp.setQtde(detachedInstanceTmp.getQtde()
+				+ detachedInstance.getQtde());
+
 		// log.debug("updating Estoque instance");
 		try {
 			HibernateUtil.setUp();
@@ -253,11 +245,15 @@ public class EstoqueDAO {
 
 	public void comprar(Estoque detachedInstance) {
 		(new CaixaDAO()).salvarCompra(detachedInstance);
-		
-		Estoque detachedInstanceTmp = buscarItemPorIdEstoque(detachedInstance.getIdEstoque());
-		detachedInstanceTmp.setData(detachedInstance.getData() == null ?  new Date() : detachedInstance.getData());
-		detachedInstanceTmp.setQtde(detachedInstanceTmp.getQtde()-detachedInstance.getQtde());
-				
+
+		Estoque detachedInstanceTmp = buscarItemPorIdEstoque(detachedInstance
+				.getIdEstoque());
+		detachedInstanceTmp
+				.setData(detachedInstance.getData() == null ? new Date()
+						: detachedInstance.getData());
+		detachedInstanceTmp.setQtde(detachedInstanceTmp.getQtde()
+				- detachedInstance.getQtde());
+
 		// log.debug("updating Estoque instance");
 		try {
 			HibernateUtil.setUp();
