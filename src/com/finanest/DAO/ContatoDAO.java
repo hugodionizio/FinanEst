@@ -70,6 +70,7 @@ public class ContatoDAO {
 	
 	public ArrayList<Contato> getContatoLista () {
 		return contatoLista;
+		//return mapear();
 	}
 	
 	public static List listar() {

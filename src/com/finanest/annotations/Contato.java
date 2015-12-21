@@ -93,7 +93,7 @@ public class Contato implements java.io.Serializable {
 		this.instituicao = instituicao;
 	}
 
-	@Column(name = "ASSUNTO", length = 10)
+	@Column(name = "ASSUNTO", length = 15)
 	public String getAssunto() {
 		return this.assunto;
 	}

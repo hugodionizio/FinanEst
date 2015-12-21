@@ -42,8 +42,8 @@
 							action="GerenciarEstoque.jsp" /></a></li>
 					<li><h:commandLink value="Reposição" action="ReporEstoque.jsp" /></a></li>
 					<li><h:commandLink value="Livro Caixa" action="LivroCaixa.jsp" /></a></li>
-					<!-- li><h:commandLink value="Projeção de Caixa"
-							action="ProjetarCaixa.jsp" /></a></li -->
+					<li><h:commandLink value="Projeção de Caixa"
+							action="ProjetarCaixa.jsp" /></a></li>
 					<li><h:commandLink value="Clientes"
 							action="GerenciarClientes.jsp" /></a></li>
 					<li><h:commandLink value="Contatos" action="Contatos.jsp" /></a></li>

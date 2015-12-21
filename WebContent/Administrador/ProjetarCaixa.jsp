@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix='cewolf' uri='/WEB-INF/cewolf.tld'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Flot Examples: Canvas text</title>
+<title>FinanEst: Projeção de Caixa</title>
 <link href="../flot/examples.css" rel="stylesheet" type="text/css">
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
 <script language="javascript" type="text/javascript"
@@ -32,10 +33,24 @@
 
 					<div align="center">
 						<div class="demo-container">
-							<img src="../img/projecao.jpg" />
+							<jsp:useBean id="periodoSaldo"
+								class="de.laures.cewolf.example.PageViewCountData" />
+							<cewolf:chart id="line" type="line" xaxislabel="Período"
+								yaxislabel="Saldo">
+								<cewolf:chartpostprocessor id="periodoSaldo" />
+								<cewolf:data>
+									<cewolf:producer id="periodoSaldo" />
+								</cewolf:data>
+							</cewolf:chart>
+							<div align="center">
+								<cewolf:img chartid="line" renderer="../cewolf" width="800"
+									height="400" />
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
 	</f:view>
 </body>
 </html>

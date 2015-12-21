@@ -23,6 +23,8 @@
 <title>FinanEst - Sistema Financeiro e de Estoque</title>
 </head>
 <body>
+	<% String user;
+	 %>
 	<f:view>
 		<jsp:directive.include file="MenuVisitante.jsp" />
 

@@ -29,8 +29,6 @@ public class Caixa implements java.io.Serializable {
 	
 	@ManagedProperty(value="#{idCaixa}")
 	private Integer idCaixa;
-	@ManagedProperty(value="#{descricao}")
-	private String descricao;
 	@ManagedProperty(value="#{data}")
 	private Date data;
 	@ManagedProperty(value="#{historico}")
@@ -45,21 +43,28 @@ public class Caixa implements java.io.Serializable {
 	private Double saldo;
 	@ManagedProperty(value="#{idFuncionario}")
 	private Integer idFuncionario;
+	@ManagedProperty(value="#{idPessoa}")
+	private Integer idPessoa;
+	@ManagedProperty(value="#{qtde}")
+	private int qtde;
+	@ManagedProperty(value="#{tipo}")
+	private String tipo;
+	@ManagedProperty(value="#{idEstoque}")
+	private int idEstoque;
 
 	public Caixa() {
 	}
 
-	public Caixa(String descricao, Date data, String historico,
-			String complemento, Double entrada, Double saida, Double saldo,
-			Integer idFuncionario) {
-		this.descricao = descricao;
+	public Caixa(Date data, Double entrada, Double saida, Integer idPessoa,
+			int qtde, String tipo, int idEstoque) {
+		super();
 		this.data = data;
-		this.historico = historico;
-		this.complemento = complemento;
 		this.entrada = entrada;
 		this.saida = saida;
-		this.saldo = saldo;
-		this.idFuncionario = idFuncionario;
+		this.idPessoa = idPessoa;
+		this.qtde = qtde;
+		this.tipo = tipo;
+		this.idEstoque = idEstoque;
 	}
 
 	@Id
@@ -71,15 +76,6 @@ public class Caixa implements java.io.Serializable {
 
 	public void setIdCaixa(Integer idCaixa) {
 		this.idCaixa = idCaixa;
-	}
-
-	@Column(name = "DESCRICAO", length = 20)
-	public String getDescricao() {
-		return this.descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -137,6 +133,60 @@ public class Caixa implements java.io.Serializable {
 		this.saldo = saldo;
 	}
 
+	@Column(name = "idPESSOA")
+	public Integer getIdPessoa() {
+		return idPessoa;
+	}
+
+	public void setIdPessoa(Integer idPessoa) {
+		this.idPessoa = idPessoa;
+	}
+
+	/**
+	 * @return the qtde
+	 */
+	@Column(name = "QTDE")
+	public int getQtde() {
+		return qtde;
+	}
+
+	/**
+	 * @param qtde the qtde to set
+	 */
+	public void setQtde(int qtde) {
+		this.qtde = qtde;
+	}
+
+	/**
+	 * @return the tipo
+	 */
+	@Column(name = "TIPO", length = 20)
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	/**
+	 * @return the idEstoque
+	 */
+	@Column(name = "idESTOQUE")
+	public int getIdEstoque() {
+		return idEstoque;
+	}
+
+	/**
+	 * @param idEstoque the idEstoque to set
+	 */
+	public void setIdEstoque(int idEstoque) {
+		this.idEstoque = idEstoque;
+	}
+
 	@Column(name = "idFUNCIONARIO")
 	public Integer getIdFuncionario() {
 		return this.idFuncionario;
@@ -151,11 +201,12 @@ public class Caixa implements java.io.Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Caixa [idCaixa=" + idCaixa + ", descricao=" + descricao
-				+ ", data=" + data + ", historico=" + historico
-				+ ", complemento=" + complemento + ", entrada=" + entrada
-				+ ", saida=" + saida + ", saldo=" + saldo + ", idFuncionario="
-				+ idFuncionario + "]";
+		return "Caixa [idCaixa=" + idCaixa + ", data=" + data + ", historico="
+				+ historico + ", complemento=" + complemento + ", entrada="
+				+ entrada + ", saida=" + saida + ", saldo=" + saldo
+				+ ", idFuncionario=" + idFuncionario + ", idPessoa=" + idPessoa
+				+ ", qtde=" + qtde + ", tipo=" + tipo + ", idEstoque="
+				+ idEstoque + "]";
 	}
 
 }

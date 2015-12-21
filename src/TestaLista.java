@@ -1,6 +1,7 @@
 import java.util.List;
 
 import com.finanest.DAO.ContatoDAO;
+import com.finanest.DAO.EstoqueDAO;
 import com.finanest.annotations.Contato;
 
 public class TestaLista {
@@ -11,6 +12,9 @@ public class TestaLista {
 		List<Contato> listaContatos = (new ContatoDAO()).listar();
 		for (Contato contato : listaContatos) {
 			System.out.println(contato.toString());
-		}	
+		}
+		
+		EstoqueDAO daoEstoque = new EstoqueDAO();
+		daoEstoque.getMenuLista();
 	}
 }

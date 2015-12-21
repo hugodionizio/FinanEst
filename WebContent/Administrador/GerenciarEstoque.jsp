@@ -46,7 +46,8 @@
 							<f:facet name="header">
 								<h:outputText value="idFornecedor" />
 							</f:facet>
-							<h:inputText tabindex="1" id="idFornecedor" value="#{est.idFornecedor}"
+							<h:inputText tabindex="1" id="idFornecedor"
+								value="#{est.idFornecedor}"
 								onblur="if (this.value == '#{estoqueBean.idFornecedor}'){this.value = '#{est.idFornecedor}'; }"
 								onfocus="if (this.value == '#{est.idFornecedor}') {this.value = '#{estoqueBean.idFornecedor}'; }">
 							</h:inputText>
@@ -56,8 +57,7 @@
 							<f:facet name="header">
 								<h:outputText value="Insumo" />
 							</f:facet>
-							<h:inputText tabindex="1" id="insumo"
-								value="#{est.insumo}"
+							<h:inputText tabindex="1" id="insumo" value="#{est.insumo}"
 								onblur="if (this.value == '#{estoqueBean.insumo}'){this.value = '#{est.insumo}'; }"
 								onfocus="if (this.value == '#{est.insumo}') {this.value = '#{estoqueBean.insumo}'; }"
 								size="14">
@@ -148,21 +148,21 @@
 						<h:outputLabel value="Quantidade" for="qtde"
 							onmouseover="exibirmensagem('Informe a quatidade de produtos')"
 							onmouseout="exibirmensagem('')" />
-						<h:inputText tabindex="5" id="qtde"
-							value="#{estoqueBean.qtde}" size="30"
-							label="Quantidade de produtos" required="true">
+						<h:inputText tabindex="5" id="qtde" value="#{estoqueBean.qtde}"
+							size="30" label="Quantidade de produtos" required="true">
 							<f:validateLength minimum="1" maximum="10" />
 						</h:inputText>
 						<h:message for="qtde" style="color:red" />
 
-						<h:outputLabel value="Tipo de produto" for="tipo"
-							onmouseover="exibirmensagem('Informe o tipo de produto')"
+						<h:outputLabel value="Tipo de insumo" for="tipo"
+							onmouseover="exibirmensagem('Informe o tipo de insumo')"
 							onmouseout="exibirmensagem('')" />
-						<h:inputText tabindex="6" id="tipo"
-							value="#{estoqueBean.tipo}" size="30"
-							label="Quantidade de produtos" required="true">
-							<f:validateLength minimum="1" maximum="20" />
-						</h:inputText>
+						<h:selectOneRadio tabindex="6" id="tipo"
+							value="#{estoqueBean.tipo}" label="Tipo de insumo"
+							required="true">
+							<f:selectItem itemValue="Produto" itemLabel="Produto" />
+							<f:selectItem itemValue="Serviço" itemLabel="Serviço" />
+						</h:selectOneRadio>
 						<h:message for="tipo" style="color:red" />
 
 					</h:panelGrid>

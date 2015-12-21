@@ -90,7 +90,6 @@
 				</div>
 			</div>
 		</div>
-		</div>
 	</f:view>
 </body>
 </html>

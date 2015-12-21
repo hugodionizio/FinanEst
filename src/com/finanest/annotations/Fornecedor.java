@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.NamedQuery;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,6 +21,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "FORNECEDOR", catalog = "FinanEst")
 @ManagedBean(name = "fornecedorBean", eager=true)
+@NamedQuery(name = "fornecedorBean.idFornecedor",
+	query = "select f from Fornecedor f where f.idFornecedor=:idFornecedor")
 @RequestScoped
 public class Fornecedor implements java.io.Serializable {
 

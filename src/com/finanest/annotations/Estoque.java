@@ -39,7 +39,7 @@ public class Estoque implements java.io.Serializable {
 	private Integer qtde;
 	@ManagedProperty(value="#{data}")
 	private Date data;
-	@ManagedProperty(value="#{data}")
+	@ManagedProperty(value="#{idFornecedor}")
 	private Integer idFornecedor;
 	public Estoque() {
 	}

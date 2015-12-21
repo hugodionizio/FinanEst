@@ -128,8 +128,9 @@ public class ClienteDAO {
 //					Query query = session.createQuery(hql);
 					//List result = query.list();
 					if(cliente != null) {
+//						user = cliente.getIdCliente();
 						System.out.println("OK");
-						return "Cliente/AreaCliente";
+						return "Cliente/AreaCliente?login="+cliente.getIdCliente().toString();
 					}
 					else {
 						System.out.println("Erro...");
